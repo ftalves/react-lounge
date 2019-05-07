@@ -1,11 +1,13 @@
 const path = require('path')
 
+const rootPath = p => path.resolve(__dirname, `../${p}`)
+
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../public/dist')
+    path: rootPath('public/dist'),
   },
   module: {
     rules: [
@@ -17,5 +19,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  resolve: {
+    alias: {
+      '@': rootPath('src'),
+    },
+    plugins: [
+      new (require('directory-named-webpack-plugin'))(true),
+    ],
+  },
 }

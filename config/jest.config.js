@@ -10,4 +10,5 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
+  resolver: 'jest-webpack-resolver',
 }
