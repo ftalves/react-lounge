@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 const path = require('path')
 
 const rootPath = p => path.resolve(__dirname, `../${p}`)
@@ -19,10 +20,14 @@ module.exports = {
         }
       },
     ],
+    noParse: [ /socket.io-client/ ],
   },
   resolve: {
     alias: {
       '@': rootPath('src'),
+      'socket.io-client': rootPath(
+        'node_modules/socket.io-client/dist/socket.io.js' //MEHHH
+      ),
     },
     plugins: [
       new (require('directory-named-webpack-plugin'))(true),

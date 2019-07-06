@@ -1,11 +1,8 @@
 import React from 'react'
-
-// import { css } from '@emotion/core'
+import io from 'socket.io-client'
 import { Chat } from '@/components/Chat/Chat'
-// const io = require("socket.io-client")
-// // console.log(io);
-// // const socket = io('http://localhost')
-// console.log(io);
+
+const socket = io()
 const userName = 'dayvan'
 const users = ['dayvan', 'bern', 'rit']
 
