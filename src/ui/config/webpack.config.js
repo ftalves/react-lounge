@@ -17,8 +17,8 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     alias: {

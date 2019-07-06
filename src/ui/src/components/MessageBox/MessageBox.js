@@ -9,7 +9,9 @@ const Wrapper = styled.div(css`
   width: 70%;
   height: 400px;
   display: inline-block;
+  vertical-align: top;
   border: 1px solid black;
+  overflow: auto;
 `)
 
 export const MessageBox = ({

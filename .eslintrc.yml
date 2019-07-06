@@ -1,24 +1,13 @@
 env:
   es6: true
   node: true
-  jest: true
-  browser: true
-
-parser: 'babel-eslint'
 
 parserOptions:
   ecmaVersion: 9
   sourceType: 'module'
-  allowImportExportEverywhere: false
-
-settings:
-  react:
-    version: 16.8.6
 
 extends: [
-  'eslint:recommended',
-  'plugin:jest/recommended',
-  'plugin:react/recommended',
+  'eslint:recommended'
 ]
 
 rules:
@@ -39,5 +28,3 @@ rules:
   object-curly-spacing: [2, 'always']
   array-bracket-spacing: [2, 'never']
   no-multiple-empty-lines: [2, { 'max': 1, 'maxEOF': 0, 'maxBOF': 0 }]
-  react/prop-types: false
-  react/display-name: false
