@@ -1,70 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { last, isEmpty } from 'ramda'
-import io from 'socket.io-client'
-import { css } from '@emotion/core'
-import styled from '@emotion/styled'
+import React, { useRef } from 'react'
 
-import { MessageBox } from '@/components/MessageBox'
-
-const socket = io()
-
-const MessageArea = styled.div(css`
-  overflow: auto;
-  margin-bottom: 10px;
-  background: #eee;
-  border: 13px ridge rgba(0,0,0,0.61);
-  border-radius: 19px;
-  height: 80vh;
-  @media only screen and (max-height: 400px) {
-    height: 60vh;
-  }
-`)
-
-const TextArea = styled.div(css`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: stretch
-  postition: fixed;
-  bottom: 15px;
-  height: 50px;
-`)
-
-const Input = styled.input(css`
-  width: 80%;
-`)
+import { MessageBox } from '@/components/Message/MessageBox'
+import { MessageArea, TextArea, Input } from '@/components/Chat/ChatStyled'
 
 export const Chat = ({
-  users,
-  userName,
+  onSend,
+  history,
 }) => {
-  const [history, setHistory] = useState([])
-  const [currentMsg, setCurrentMsg] = useState('')
-
-  useEffect(() => {
-    socket.on('msg', addMsg)
-  }, [])
-
-  const addMsg = msg => {
-    setHistory(prevHistory => {
-      const displayUser = isEmpty(prevHistory) || last(prevHistory).userName != userName
-      // console.log(displayUser);
-      return [
-        ...prevHistory,
-        {
-          id: Date.now(),
-          userName,
-          displayUser,
-          isSent: false,
-          content: msg,
-        },
-      ]
-    })
-  }
+  const input = useRef()
 
   const send = () => {
-    setCurrentMsg('')
-    socket.emit('msg', currentMsg)
+    onSend(input.current.value)
+    input.current.value = ''
   }
 
   return (
@@ -73,12 +20,8 @@ export const Chat = ({
         <MessageBox history={history} />
       </MessageArea>
       <TextArea>
-        <Input
-          value={currentMsg}
-          onChange={e => setCurrentMsg(e.target.value)}
-          onKeyPress={e => e.key == 'Enter' ? send() : null}
+        <Input ref={input} onKeyPress={e => e.key == 'Enter' ? send() : null}
         />
-        <button onClick={send}> >> </button>
       </TextArea>
     </>
   )

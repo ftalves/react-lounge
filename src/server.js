@@ -11,8 +11,17 @@ const io = socket(server)
 app.use(serve('src/ui/public'))
 
 io.on('connection', socket => {
+  let userName = 'anonymous'
+  socket.on('register', name => {
+    userName = name
+    io.emit('notice', `Usuario ${userName} entrou!`)
+  })
+
   socket.on('msg', msg => {
-    io.emit('msg', msg)
+    io.emit('msg', {
+      userName,
+      content: msg,
+    })
   })
   console.log('a user connected')
 })

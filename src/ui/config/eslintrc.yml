@@ -21,3 +21,4 @@ extends: [
 
 rules:
   react/prop-types: false
+  react/display-name: false
