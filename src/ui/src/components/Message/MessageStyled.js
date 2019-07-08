@@ -19,3 +19,22 @@ export const ContentWrapper = styled.div(css`
   background: #ddd;
   align-self: flex-start;
 `)
+
+export const MessagesWrapper = styled.div(css`
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  padding: 30px;
+  overflow: auto;
+  margin-bottom: 10px;
+  background: #eee;
+  border: 13px ridge rgba(0,0,0,0.61);
+  border-radius: 19px;
+  height: 80vh;
+  @media only screen and (max-height: 900px) {
+    height: 65vh;
+  }
+  @media only screen and (max-height: 500px) {
+    height: 50vh;
+  }
+`)

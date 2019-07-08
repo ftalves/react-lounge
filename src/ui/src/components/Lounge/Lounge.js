@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { last, isEmpty } from 'ramda'
 import io from 'socket.io-client'
+import { last, isEmpty } from 'ramda'
 
 import { Register } from '@/components/Register'
 import { Chat } from '@/components/Chat'
@@ -12,22 +12,13 @@ export const Lounge = () => {
   const [userName, setUserName] = useState('')
 
   useEffect(() => {
-    socket.on('msg', receiveMessage)
+    socket.on('message', receiveMessage)
   }, [])
-
-  const register = name => {
-    setUserName(name)
-    socket.emit('register', name)
-  }
-
-  const send = message => {
-    socket.emit('msg', message)
-  }
 
   const receiveMessage = data => {
     setHistory(prevHistory => {
       const displayUser = isEmpty(prevHistory)
-        || last(prevHistory).userName != data.userName
+      || last(prevHistory).userName != data.userName
 
       return [
         ...prevHistory,
@@ -38,6 +29,15 @@ export const Lounge = () => {
         },
       ]
     })
+  }
+
+  const register = name => {
+    setUserName(name)
+    socket.emit('register', name)
+  }
+
+  const send = message => {
+    socket.emit('message', message)
   }
 
   return userName

@@ -3,7 +3,7 @@ import React from 'react'
 import { UserWrapper, ContentWrapper } from '@/components/Message/MessageStyled'
 
 export const Message = React.memo(({
-  content,
+  message,
   userName,
   displayUser,
 }) => (
@@ -12,6 +12,6 @@ export const Message = React.memo(({
       ? <UserWrapper>{`${userName}`}</UserWrapper>
       : null
     }
-    <ContentWrapper>{`${content}`}</ContentWrapper>
+    <ContentWrapper>{`${message}`}</ContentWrapper>
   </>
 ))

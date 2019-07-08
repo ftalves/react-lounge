@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-import { MessageBox } from '@/components/Message/MessageBox'
+import { MessagesWrapper } from '@/components/Message/MessagesWrapper'
 import { MessageArea, TextArea, Input } from '@/components/Chat/ChatStyled'
 
 export const Chat = ({
@@ -16,12 +16,9 @@ export const Chat = ({
 
   return (
     <>
-      <MessageArea>
-        <MessageBox history={history} />
-      </MessageArea>
+      <MessagesWrapper history={history} />
       <TextArea>
-        <Input ref={input} onKeyPress={e => e.key == 'Enter' ? send() : null}
-        />
+        <Input ref={input} onKeyPress={e => e.key == 'Enter' ? send() : null} />
       </TextArea>
     </>
   )

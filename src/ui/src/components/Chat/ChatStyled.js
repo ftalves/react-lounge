@@ -23,20 +23,6 @@ export const TextArea = styled.div(css`
   height: 50px;
 `)
 
-export const RegisterArea = styled.div(css`
-  display: flex;
-  width: 100vw;
-  font-size: 50px;
-  flex-direction: column;
-  align-items: center;
-`)
-
-export const RegisterInput = styled.input(css`
-  font-size: 30px;
-  width: 300px;
-  height: 40px;
-`)
-
 export const Input = styled.input(css`
   font-size: 30px;
   width: 80%;
