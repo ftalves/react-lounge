@@ -1,16 +1,22 @@
 import React from 'react'
-import io from 'socket.io-client'
-import { Chat } from '@/components/Chat/Chat'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
-const socket = io()
-const userName = 'dayvan'
-const users = ['dayvan', 'bern', 'rit']
+import { Chat } from '@/components/Chat'
+
+const userName = 'me'
+const users = [userName, 'soy_boy', 'hot_surfer']
+
+const AppWrapper = styled.div(css`
+  font-size: 20px;
+`)
 
 export const App = () => (
   <div>
-    <div>Head</div>
     <main>
-      <Chat userName='dayvan' users={users} />
+      <AppWrapper>
+        <Chat userName={userName} users={users} />
+      </AppWrapper>
     </main>
   </div>
 )

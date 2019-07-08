@@ -6,12 +6,9 @@ import styled from '@emotion/styled'
 import { Message } from '@/components/Message'
 
 const Wrapper = styled.div(css`
-  width: 70%;
-  height: 400px;
-  display: inline-block;
-  vertical-align: top;
-  border: 1px solid black;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 `)
 
 export const MessageBox = ({

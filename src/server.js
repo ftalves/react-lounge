@@ -10,7 +10,10 @@ const io = socket(server)
 
 app.use(serve('src/ui/public'))
 
-io.on('connection', () => {
+io.on('connection', socket => {
+  socket.on('msg', msg => {
+    io.emit('msg', msg)
+  })
   console.log('a user connected')
 })
 
