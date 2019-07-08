@@ -31,6 +31,8 @@ export const MessagesWrapper = styled.div(css`
   border: 13px ridge rgba(0,0,0,0.61);
   border-radius: 19px;
   height: 80vh;
+  width: 70vw;
+  max-width: 800px;
   @media only screen and (max-height: 900px) {
     height: 65vh;
   }

@@ -1,25 +1,32 @@
 import React, { useRef } from 'react'
 
 import { MessagesWrapper } from '@/components/Message/MessagesWrapper'
-import { MessageArea, TextArea, Input } from '@/components/Chat/ChatStyled'
+import {
+  Chat as ChatWrapper,
+  TextArea,
+  Input,
+} from '@/components/Chat/ChatStyled'
 
 export const Chat = ({
   onSend,
   history,
 }) => {
-  const input = useRef()
+  const inputRef = useRef()
 
   const send = () => {
-    onSend(input.current.value)
-    input.current.value = ''
+    onSend(inputRef.current.value)
+    inputRef.current.value = ''
   }
 
   return (
-    <>
+    <ChatWrapper>
       <MessagesWrapper history={history} />
       <TextArea>
-        <Input ref={input} onKeyPress={e => e.key == 'Enter' ? send() : null} />
+        <Input
+          ref={inputRef}
+          onKeyPress={e => e.key == 'Enter' ? send() : null}
+        />
       </TextArea>
-    </>
+    </ChatWrapper>
   )
 }
