@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 
-import { MessagesWrapper } from '@/components/Message/MessagesWrapper'
 import {
   Chat as ChatWrapper,
+  MessageArea,
   TextArea,
   Input,
 } from '@/components/Chat/ChatStyled'
@@ -12,6 +12,11 @@ export const Chat = ({
   history,
 }) => {
   const inputRef = useRef()
+  const messageAreaRef = useRef()
+
+  useEffect(() => {
+    messageAreaRef.current.scrollTop = messageAreaRef.current.scrollHeight
+  })
 
   const send = () => {
     onSend(inputRef.current.value)
@@ -20,7 +25,7 @@ export const Chat = ({
 
   return (
     <ChatWrapper>
-      <MessagesWrapper history={history} />
+      <MessageArea ref={messageAreaRef}>{history}</MessageArea>
       <TextArea>
         <Input
           ref={inputRef}

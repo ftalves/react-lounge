@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { UserWrapper, ContentWrapper } from '@/components/Message/MessageStyled'
+import {
+  User,
+  Message as MessageWrapper,
+} from '@/components/Message/MessageStyled'
 
 export const Message = React.memo(({
   message,
@@ -9,9 +12,9 @@ export const Message = React.memo(({
 }) => (
   <>
     {displayUser
-      ? <UserWrapper>{`${userName}`}</UserWrapper>
+      ? <User>{`${userName}`}</User>
       : null
     }
-    <ContentWrapper>{`${message}`}</ContentWrapper>
+    <MessageWrapper>{`${message}`}</MessageWrapper>
   </>
 ))

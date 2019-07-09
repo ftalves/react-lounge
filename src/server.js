@@ -15,13 +15,16 @@ io.on('connection', socket => {
 
   socket.on('register', name => {
     userName = name
-    io.emit('notice', `Usuario ${userName} entrou!`)
+    io.emit('userEnter', userName)
+    console.log(`Usuário ${userName} registrado.`)
   })
 
   socket.on('message', message => {
     io.emit('message', { userName, message })
+    console.log(`${userName}: ${message}`)
   })
-  console.log('a user connected')
+
+  console.log('A user connected...')
 })
 
 server.listen(port, () => console.log(`Server started on port ${port}.`))

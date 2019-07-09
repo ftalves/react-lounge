@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-export const UserWrapper = styled.div(css`
+export const User = styled.div(css`
   background: #ffdbdb;
   font-weight: bold;
   margin: 3px;
@@ -11,7 +11,7 @@ export const UserWrapper = styled.div(css`
   align-self: flex-start;
 `)
 
-export const ContentWrapper = styled.div(css`
+export const Message = styled.div(css`
   margin: 3px 50px;
   padding: 10px;
   border: 2px hidden rgba(0,0,0,0.61);
@@ -20,23 +20,11 @@ export const ContentWrapper = styled.div(css`
   align-self: flex-start;
 `)
 
-export const MessagesWrapper = styled.div(css`
-  display: flex;
-  flex-direction: column;
-  font-size: 25px;
-  padding: 30px;
-  overflow: auto;
-  margin-bottom: 10px;
-  background: #eee;
-  border: 13px ridge rgba(0,0,0,0.61);
-  border-radius: 19px;
-  height: 80vh;
-  width: 70vw;
-  max-width: 800px;
-  @media only screen and (max-height: 900px) {
-    height: 65vh;
-  }
-  @media only screen and (max-height: 500px) {
-    height: 50vh;
-  }
+export const Notice = styled.div(css`
+  font-size: 20px;
+  padding: 5px;
+  background: #8fa68f;
+  color: white;
+  border: 2px hidden rgba(0,0,0,0.61);
+  border-radius: 5px;
 `)

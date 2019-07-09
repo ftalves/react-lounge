@@ -3,6 +3,8 @@ import io from 'socket.io-client'
 import { last, isEmpty } from 'ramda'
 
 import { Register } from '@/components/Register'
+import { Message } from '@/components/Message'
+import { Notice } from '@/components/Message/MessageStyled'
 import { Chat } from '@/components/Chat'
 
 const socket = io()
@@ -13,22 +15,26 @@ export const Lounge = () => {
 
   useEffect(() => {
     socket.on('message', receiveMessage)
+    socket.on('userEnter', notifyUserEnter)
   }, [])
 
   const receiveMessage = data => {
     setHistory(prevHistory => {
       const displayUser = isEmpty(prevHistory)
-      || last(prevHistory).userName != data.userName
+      || last(prevHistory).props.userName != data.userName
 
       return [
         ...prevHistory,
-        {
-          ...data,
-          id: Date.now(),
-          displayUser,
-        },
+        <Message {...data} key={Date.now()} displayUser={displayUser} />,
       ]
     })
+  }
+
+  const notifyUserEnter = userName => {
+    setHistory(prevHistory => ([
+      ...prevHistory,
+      <Notice key={Date.now()}>{`${userName} entrou na sala!`}</Notice>,
+    ]))
   }
 
   const register = name => {
