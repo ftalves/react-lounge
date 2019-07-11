@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 import { Chat } from '@/components/Chat'
 import { Message } from '@/components/Message'
 import { Register } from '@/components/Register'
-import { Notice } from '@/components/Message/MessageStyled'
+import { Notice, NoticeAlert } from '@/components/Message/MessageStyled'
 
 const socket = io()
 
@@ -19,6 +19,7 @@ export const Lounge = () => {
   useEffect(() => {
     socket.on('message', receiveMessage)
     socket.on('userEnter', notifyUserEnter)
+    socket.on('userLeave', notifyUserLeave)
   }, [])
 
   const receiveMessage = data => {
@@ -37,6 +38,13 @@ export const Lounge = () => {
     setHistory(prevHistory => ([
       ...prevHistory,
       <Notice key={Date.now()}>{`${username} entrou na sala!`}</Notice>,
+    ]))
+  }
+
+  const notifyUserLeave = username => {
+    setHistory(prevHistory => ([
+      ...prevHistory,
+      <NoticeAlert key={Date.now()}>{`${username} saiu.`}</NoticeAlert>,
     ]))
   }
 

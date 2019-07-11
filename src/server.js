@@ -35,6 +35,7 @@ io.on('connection', socket => {
 
     socket.on('disconnect', () => {
       delete connectedUsers[username]
+      io.emit('userLeave', username)
       console.log(`Desconectado: ${username}`)
     })
   })
