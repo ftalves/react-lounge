@@ -14,3 +14,8 @@ export const Input = styled.input(css`
   width: 300px;
   height: 40px;
 `)
+
+export const Alert = styled.p(css`
+  font-size: 18px;
+  color: red;
+`)

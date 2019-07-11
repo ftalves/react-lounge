@@ -1,9 +1,14 @@
 import React, { useRef } from 'react'
 
-import { RegisterWrapper, Input } from '@/components/Register/RegisterStyled'
+import {
+  RegisterWrapper,
+  Input,
+  Alert,
+} from '@/components/Register/RegisterStyled'
 
 export const Register = ({
   onSend,
+  error,
 }) => {
   const input = useRef(null)
 
@@ -14,6 +19,7 @@ export const Register = ({
         ref={input}
         onKeyPress={e => e.key == 'Enter' ? onSend(input.current.value) : null}
       />
+      <Alert>{error}</Alert>
     </RegisterWrapper>
   )
 }

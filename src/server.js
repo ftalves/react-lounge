@@ -7,24 +7,37 @@ const port = 4000
 const app = new Koa()
 const server = http.Server(app.callback())
 const io = socket(server)
+let connectedUsers = {}
 
 app.use(serve('src/ui/public'))
 
 io.on('connection', socket => {
-  let userName = 'anonymous'
+  console.log('Nova conexão. Aguardando registro...')
 
-  socket.on('register', name => {
-    userName = name
-    io.emit('userEnter', userName)
-    console.log(`Usuário ${userName} registrado.`)
+  socket.on('register', (username, callback) => {
+    const nameIsValid = connectedUsers[username] == undefined
+      && username.length != 0
+
+    callback({
+      auth: nameIsValid,
+      error: nameIsValid ? '' : 'Nome de usuário inválido ou em uso.',
+    })
+    if (!nameIsValid) { return }
+
+    connectedUsers[username] = true
+    io.emit('userEnter', username)
+    console.log(`Registrado: ${username}`)
+
+    socket.on('message', message => {
+      io.emit('message', { username, message })
+      console.log(`Mensagem de ${username}: ${message}`)
+    })
+
+    socket.on('disconnect', () => {
+      delete connectedUsers[username]
+      console.log(`Desconectado: ${username}`)
+    })
   })
-
-  socket.on('message', message => {
-    io.emit('message', { userName, message })
-    console.log(`${userName}: ${message}`)
-  })
-
-  console.log('A user connected...')
 })
 
-server.listen(port, () => console.log(`Server started on port ${port}.`))
+server.listen(port, () => console.log(`Servidor iniciado na porta ${port}.`))

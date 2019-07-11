@@ -21,6 +21,7 @@ export const Message = styled.div(css`
 `)
 
 export const Notice = styled.div(css`
+  margin: 3px 0;
   font-size: 20px;
   padding: 5px;
   background: #8fa68f;

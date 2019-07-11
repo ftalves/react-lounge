@@ -7,12 +7,12 @@ import {
 
 export const Message = React.memo(({
   message,
-  userName,
+  username,
   displayUser,
 }) => (
   <>
     {displayUser
-      ? <User>{`${userName}`}</User>
+      ? <User>{`${username}`}</User>
       : null
     }
     <MessageWrapper>{`${message}`}</MessageWrapper>

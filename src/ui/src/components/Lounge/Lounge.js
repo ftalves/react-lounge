@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import io from 'socket.io-client'
 import { last, isEmpty } from 'ramda'
+import io from 'socket.io-client'
 
-import { Register } from '@/components/Register'
-import { Message } from '@/components/Message'
-import { Notice } from '@/components/Message/MessageStyled'
 import { Chat } from '@/components/Chat'
+import { Message } from '@/components/Message'
+import { Register } from '@/components/Register'
+import { Notice } from '@/components/Message/MessageStyled'
 
 const socket = io()
 
 export const Lounge = () => {
   const [history, setHistory] = useState([])
-  const [userName, setUserName] = useState('')
+  const [registration, setRegistration] = useState({
+    auth: false,
+    error: '',
+  })
 
   useEffect(() => {
     socket.on('message', receiveMessage)
@@ -21,7 +24,7 @@ export const Lounge = () => {
   const receiveMessage = data => {
     setHistory(prevHistory => {
       const displayUser = isEmpty(prevHistory)
-      || last(prevHistory).props.userName != data.userName
+        || last(prevHistory).props.username != data.username
 
       return [
         ...prevHistory,
@@ -30,27 +33,26 @@ export const Lounge = () => {
     })
   }
 
-  const notifyUserEnter = userName => {
+  const notifyUserEnter = username => {
     setHistory(prevHistory => ([
       ...prevHistory,
-      <Notice key={Date.now()}>{`${userName} entrou na sala!`}</Notice>,
+      <Notice key={Date.now()}>{`${username} entrou na sala!`}</Notice>,
     ]))
   }
 
   const register = name => {
-    setUserName(name)
-    socket.emit('register', name)
+    socket.emit('register', name, setRegistration)
   }
 
   const send = message => {
     socket.emit('message', message)
   }
 
-  return userName
+  return registration.auth
     ? (
       <Chat history={history} onSend={send} />
     )
     : (
-      <Register onSend={register} />
+      <Register onSend={register} error={registration.error} />
     )
 }

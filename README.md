@@ -6,9 +6,12 @@ Chat room built with React.js and Socket.io
 - First working version
 - Add notices
 
+#### 2019-07-10
+- Add name validation
+
 ## TODO:
-- Refactor styles
 - Add logged users
+- Refactor styles
 - Improve graphic stuff
 - Refactor server
-- Host app
+- Production build
