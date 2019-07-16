@@ -17,6 +17,4 @@ Chat room built with React.js and Socket.io
 
 ## TODO:
 - Refactor styles
-- Improve graphic stuff
-- Refactor server
 - Production build
