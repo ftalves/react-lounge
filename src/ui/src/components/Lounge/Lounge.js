@@ -11,6 +11,7 @@ const socket = io()
 
 export const Lounge = () => {
   const [history, setHistory] = useState([])
+  const [usersOnline, setUsersOnline] = useState([])
   const [registration, setRegistration] = useState({
     auth: false,
     error: '',
@@ -20,6 +21,7 @@ export const Lounge = () => {
     socket.on('message', receiveMessage)
     socket.on('userEnter', notifyUserEnter)
     socket.on('userLeave', notifyUserLeave)
+    socket.emit('retrieveUsersOnline', setUsersOnline)
   }, [])
 
   const receiveMessage = data => {
@@ -35,6 +37,7 @@ export const Lounge = () => {
   }
 
   const notifyUserEnter = username => {
+    socket.emit('retrieveUsersOnline', setUsersOnline)
     setHistory(prevHistory => ([
       ...prevHistory,
       <Notice key={Date.now()}>{`${username} entrou na sala!`}</Notice>,
@@ -42,6 +45,7 @@ export const Lounge = () => {
   }
 
   const notifyUserLeave = username => {
+    socket.emit('retrieveUsersOnline', setUsersOnline)
     setHistory(prevHistory => ([
       ...prevHistory,
       <NoticeAlert key={Date.now()}>{`${username} saiu.`}</NoticeAlert>,
@@ -58,7 +62,7 @@ export const Lounge = () => {
 
   return registration.auth
     ? (
-      <Chat history={history} onSend={send} />
+      <Chat history={history} onSend={send} usersOnline={usersOnline} />
     )
     : (
       <Register onSend={register} error={registration.error} />

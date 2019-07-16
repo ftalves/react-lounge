@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 
+import { Room } from '@/components/Room'
 import {
   Chat as ChatWrapper,
   MessageArea,
@@ -10,6 +11,7 @@ import {
 export const Chat = ({
   onSend,
   history,
+  usersOnline,
 }) => {
   const inputRef = useRef()
   const messageAreaRef = useRef()
@@ -25,6 +27,7 @@ export const Chat = ({
 
   return (
     <ChatWrapper>
+      <Room usersOnline={usersOnline} />
       <MessageArea ref={messageAreaRef}>{history}</MessageArea>
       <TextArea>
         <Input

@@ -14,11 +14,12 @@ app.use(serve('src/ui/public'))
 io.on('connection', socket => {
   console.log('Nova conexão. Aguardando registro...')
 
-  socket.on('register', (username, callback) => {
+  socket.on('register', (username, register) => {
     const nameIsValid = connectedUsers[username] == undefined
       && username.length != 0
+      && username.length < 20
 
-    callback({
+    register({
       auth: nameIsValid,
       error: nameIsValid ? '' : 'Nome de usuário inválido ou em uso.',
     })
@@ -32,6 +33,8 @@ io.on('connection', socket => {
       io.emit('message', { username, message })
       console.log(`Mensagem de ${username}: ${message}`)
     })
+
+    socket.on('retrieveUsersOnline', cb => cb(Object.keys(connectedUsers)))
 
     socket.on('disconnect', () => {
       delete connectedUsers[username]

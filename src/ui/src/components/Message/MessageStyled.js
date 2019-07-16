@@ -12,7 +12,7 @@ const notice = css`
 `
 
 export const User = styled.div(css`
-  background: #ffdbdb;
+  background: #e6ad95;
   font-weight: bold;
   margin: 3px;
   padding: 10px;
