@@ -3,7 +3,7 @@ import serve from 'koa-static'
 import http from 'http'
 import socket from 'socket.io'
 
-const port = 4000
+const port = process.env.PORT || 4000
 const app = new Koa()
 const server = http.Server(app.callback())
 const io = socket(server)

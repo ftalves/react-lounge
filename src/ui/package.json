@@ -1,10 +1,10 @@
 {
-  "name": "react-takeoff-ui",
+  "name": "react-lounge-ui",
   "version": "1.0.0",
   "author": "bernqrsk <ftelles.bus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config config/webpack.config.js --watch",
+    "build": "webpack --config config/webpack.config.js",
     "test": "jest --config config/jest.config.js",
     "lint": "eslint --config config/eslintrc.yml src/"
   },

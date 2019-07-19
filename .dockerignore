@@ -1,0 +1,11 @@
+Dockerfile
+.dockerignore
+
+node_modules
+*.log
+.git
+.gitignore
+
+src/ui/node_modules
+src/ui/*.log
+src/ui/.gitignore
