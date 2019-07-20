@@ -18,6 +18,8 @@ Chat room built with React.js and Socket.io
 #### 2019-07-18
 - Add initial production build (docker)
 
-## TODO:
+#### 2019-07-20
 - More production stuff (minify, uglify)
+
+## TODO:
 - Refactor styles

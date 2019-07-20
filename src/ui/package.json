@@ -4,7 +4,8 @@
   "author": "bernqrsk <ftelles.bus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config config/webpack.config.js",
+    "dev": "webpack --config config/webpack/webpack.dev.js --watch",
+    "prod": "webpack --config config/webpack/webpack.prod.js",
     "test": "jest --config config/jest.config.js",
     "lint": "eslint --config config/eslintrc.yml src/"
   },
@@ -33,7 +34,8 @@
     "jest-webpack-resolver": "^0.3.0",
     "react-testing-library": "^6.0.4",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-merge": "^4.2.1"
   },
   "babel": {
     "presets": [

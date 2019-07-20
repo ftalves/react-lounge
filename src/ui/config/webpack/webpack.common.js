@@ -1,10 +1,9 @@
 var webpack = require('webpack');
 const path = require('path')
 
-const rootPath = p => path.resolve(__dirname, `../${p}`)
+const rootPath = p => path.resolve(__dirname, `../../${p}`)
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',

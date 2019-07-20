@@ -10,7 +10,7 @@ RUN npm install
 WORKDIR /ui
 COPY src/ui .
 RUN npm install
-RUN npm run build
+RUN npm run prod
 
 # --- MAIN IMAGE ---
 FROM node:10-alpine
