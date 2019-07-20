@@ -47,6 +47,6 @@
     ]
   },
   "jestWebpackResolver": {
-    "webpackConfig": "./config/webpack.config.js"
+    "webpackConfig": "./config/webpack/webpack.dev.js"
   }
 }
